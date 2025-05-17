@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Hopi Hari</title>
+    <link rel="stylesheet" href="styles/area2.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="imagem/logo.png" alt="Logo Hopi Hari">
+                </div>
+                <div class="user-menu">
+                    <div class="user-info">
+                        <div class="user-name" id="user-name">Bem-vindo(a)</div>
+                        <div class="user-email" id="user-email"></div>
+                    </div>
+                    <form action="dashboard.html">
+                        <button class="logout-btn" >Voltar</button>
+                    </form>
+                    
+
+                </div>
+            </div>
+        </div>
+    </header>
+    
+   
+
+    <div class="container">
+         <div class="floating-text">
+        <span class="letter">K</span>
+        <span class="letter">A</span>
+        <span class="letter">M</span>
+        <span class="letter">I</span>
+        <span class="letter">N</span>
+        <span class="letter">D</span>
+        <span class="letter">A</span>
+        <span class="letter">  </span>
+        <span class="letter">M</span>
+        <span class="letter">U</span>
+        <span class="letter">N</span>
+        <span class="letter">D</span>
+        <span class="letter">I</span>
+</div>
+
+        <div class="rides-grid">
+            <div class="ride-card">
+                <div class="ride-image" style="background-image: url('imagens/GirandaMundi.jpg')"></div>
+                <div class="ride-info">
+                    <h3 class="ride-name">GIRANDA MUNDI</h3>
+                    <div class="ride-time">35 min</div>
+                    <span class="ride-status status-busy">Muito Movimentado</span>
+                </div>
+            </div>
+
+            <div class="ride-card">
+                <div class="ride-image" style="background-image: url('imagens/TheatroKaminda.jpg')"></div>
+                <div class="ride-info">
+                    <h3 class="ride-name">THEATRO DI KAMINDA</h3>
+                    <div class="ride-time">15 min</div>
+                    <span class="ride-status status-open">Normal</span>
+                </div>
+            </div>
+
+            <div class="ride-card">
+                <div class="ride-image-more" style="background-image: url('imagens/KamindaMundi.jpg')"></div>
+                <div class="ride-info">
+                    <h3 class="ride-name"></h3>
+                    <div class="ride-time">KAMINDA MUNDI</div>
+                    <p>Kaminda Mundi, ao que tudo indica, foi onde as primeiras casas foram construídas. A região é uma homenagem do povo de Hopi Hari aos seus antepassados e suas origens. Uma viagem através de muitas nações. Em seus prédios podemos ver a influência da arquitetura francesa, alemã, italiana, portuguesa e holandesa. Uma das atrações mais tradicionais da região é a Giranda Mundi, de cima dessa roda-gigante podemos ver o país inteiro.</p>
+                    <p>Veja também!</p>
+                    <ul>
+                        <li><a href=""></a>Comprar Ingressos!</li>
+                        <li><a href=""></a>Alimente-se no Hopi Hari!</li>
+                    </ul>
+                    <span class="ride-status status-open">Normal</span>
+                </div>
+            </div>
+
+            <div class="ride-card">
+                <div class="ride-image" style="background-image: url('imagens/JogakídiKaminda.jpg')"></div>
+                <div class="ride-info">
+                    <h3 class="ride-name">JOGAKÍ DI KAMINDA </h3>
+                    <div class="ride-time">25 min</div>
+                    <span class="ride-status status-busy">Movimentado</span>
+                </div>
+            </div>
+
+            <div class="ride-card">
+                <div class="ride-image" style="background-image: url('imagens/VULAVIKING.jpg')"></div>
+                <div class="ride-info">
+                    <h3 class="ride-name">VULAVIKING</h3>
+                    <div class="ride-time">40 min</div>
+                    <span class="ride-status status-busy">Muito Movimentado</span>
+                </div>
+            </div>
+
+          
+
+ 
+
+       
+        </div>
+
+        <p class="last-update">Última atualização: 25/04/2025 15:42</p>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 Parque HOPIhARI - Sistema de Gerenciamento de Filas
+    </div>
+
+    <script>
+        // Código para atualização em tempo real
+        function atualizarTemposEspera() {
+            // Em uma implementação real, aqui faria uma chamada AJAX para o servidor
+            // para obter os dados atualizados das filas
+            
+            // Simulação de atualização para demonstração
+            const agora = new Date();
+            document.querySelector('.last-update').textContent = 
+                `Última atualização: ${agora.toLocaleDateString()} ${agora.toLocaleTimeString()}`;
+        }
+
+        // Atualizar a cada 30 segundos
+        setInterval(atualizarTemposEspera, 30000);
+    </script>
+    
+    
+
+    <script>
+        // Verificar se há um usuário logado
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = JSON.parse(localStorage.getItem('user')) || {};
+            
+            if (userData.firstName) {
+                document.getElementById('user-name').textContent = `Olá, ${userData.firstName}!`;
+                document.getElementById('user-email').textContent = userData.email;
+            } else {
+                // Redirecionar para a página de login se não houver usuário
+                window.location.href = '/';
+            }
+            
+            // Botão de logout
+            document.getElementById('logout-btn').addEventListener('click', function() {
+                localStorage.removeItem('user');
+                window.location.href = '/';
+            });
+            
+            // Toggle do menu lateral (para mobile)
+            document.getElementById('menu-toggle').addEventListener('click', function() {
+                document.getElementById('sidebar').classList.toggle('active');
+            });
+            
+            // Fechar menu ao clicar em um item (para mobile)
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 992) {
+                        document.getElementById('sidebar').classList.remove('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

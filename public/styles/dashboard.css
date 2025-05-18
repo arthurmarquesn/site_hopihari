@@ -43,6 +43,7 @@
         .user-menu {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
         
         .user-info {
